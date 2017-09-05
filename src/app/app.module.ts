@@ -2,26 +2,29 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router'
+import { RouterModule, Routes } from '@angular/router';
 
-import { MdToolbarModule } from '@angular/material';
-import { MdListModule } from '@angular/material';
-import { MdButtonModule } from '@angular/material'
+import { MdToolbarModule, MdListModule, MdButtonModule, MdProgressBarModule } from '@angular/material';
 
+import { BobService } from './service/bob.service';
 import { AppComponent } from './app.component';
 import { ListVersionsComponent } from './list-versions/list-versions.component';
+import { CustomizeComponent } from './customize/customize.component';
+import { DownloadAndInstallComponent } from './download-and-install/download-and-install.component';
 
 const appRoutes: Routes = [
   { path: 'list-versions', component: ListVersionsComponent },
-
-   
+  { path: 'customize', component: CustomizeComponent },
+  { path: 'download-and-install', component: DownloadAndInstallComponent },
   { path: '', redirectTo: '/list-versions', pathMatch: 'full' }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListVersionsComponent
+    ListVersionsComponent,
+    CustomizeComponent,
+    DownloadAndInstallComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +36,12 @@ const appRoutes: Routes = [
     ),
     MdToolbarModule,
     MdListModule,
-    MdButtonModule
+    MdButtonModule,
+    MdProgressBarModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

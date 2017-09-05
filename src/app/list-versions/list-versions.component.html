@@ -1,6 +1,6 @@
-<md-list>
-  <md-list-item>Item 1</md-list-item>
-  <md-list-item>Item 2</md-list-item>
-  <md-list-item>Item 3</md-list-item>
-</md-list>
-<button md-raised-button>Download &amp; install</button>
+<div flex-gt-sm="50" flex>
+  <md-list flex>
+    <md-list-item *ngFor="let version of versionList" (click)="select(version)">{{version}}</md-list-item>
+  </md-list>
+</div>
+<a md-raised-button layout-fill [routerLink]="['../customize']">Customize eLink</a>
