@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
-import { MdToolbarModule, MdListModule, MdButtonModule, MdProgressBarModule } from '@angular/material';
+import { MdToolbarModule, MdListModule, MdButtonModule, MdProgressBarModule, MdFormFieldModule, MdInputModule } from '@angular/material';
 
 import { BobService } from './service/bob.service';
 import { AppComponent } from './app.component';
@@ -14,8 +14,8 @@ import { DownloadAndInstallComponent } from './download-and-install/download-and
 
 const appRoutes: Routes = [
   { path: 'list-versions', component: ListVersionsComponent },
-  { path: 'customize', component: CustomizeComponent },
-  { path: 'download-and-install', component: DownloadAndInstallComponent },
+  { path: 'customize/:eLinkVersion', component: CustomizeComponent },
+  { path: 'download-and-install/:eLinkVersion', component: DownloadAndInstallComponent },
   { path: '', redirectTo: '/list-versions', pathMatch: 'full' }
 ];
 
@@ -37,6 +37,8 @@ const appRoutes: Routes = [
     MdToolbarModule,
     MdListModule,
     MdButtonModule,
+    MdFormFieldModule,
+    MdInputModule,
     MdProgressBarModule
   ],
   providers: [],

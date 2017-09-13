@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { BobService } from '../service/bob.service'
 
@@ -12,7 +13,7 @@ export class ListVersionsComponent implements OnInit {
     versionList = [];
     selectedItem = null;
 
-    constructor(private bobService: BobService) {}
+    constructor(private bobService: BobService, private router: Router) {}
 
     public ngOnInit() {
         this.bobService
@@ -27,8 +28,12 @@ export class ListVersionsComponent implements OnInit {
 
     public select(item: any) {
         this.selectedItem = item;
-        console.log(this.selectedItem);
-        
+    }
+
+    public customize() {
+        if(this.selectedItem != null) {
+            this.router.navigateByUrl('/customize/' + this.selectedItem);
+        }
     }
 
 }

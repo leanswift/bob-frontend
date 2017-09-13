@@ -1,6 +1,6 @@
-<div flex-gt-sm="50" flex>
+<div class="container">
   <md-list flex>
     <md-list-item *ngFor="let version of versionList" (click)="select(version)">{{version}}</md-list-item>
   </md-list>
+  <a md-raised-button layout-fill (click)="customize()" flex="auto">Customize eLink</a>
 </div>
-<a md-raised-button layout-fill [routerLink]="['../customize']">Customize eLink</a>
