@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { Http, RequestOptionsArgs } from '@angular/http';
+import { Http, RequestOptionsArgs, ResponseContentType } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 const baseUrl = 'http://localhost:9090/http://172.30.1.109:8888';
@@ -24,7 +24,10 @@ export class BobService {
         data['configurations'] = this.customizables; 
         return this.http.post(
             baseUrl + '/' + eLinkVersion + '/download',
-            data
+            data,
+            {
+                responseType: ResponseContentType.ArrayBuffer
+            }
         );
     }
 

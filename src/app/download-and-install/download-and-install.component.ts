@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as arrayBufferToBuffer from 'arraybuffer-to-buffer';
 
 import { BobService } from '../service/bob.service';
 
@@ -25,11 +26,13 @@ export class DownloadAndInstallComponent implements OnInit {
 
         this.bobService.downloadELink(this.eLinkVersion)
             .subscribe(data => {
-                console.log(data)
-                let file = this.fs.writeFile(this.eLinkVersion + '.war', data, function(a, b, c) {
-                    console.log(a);
-                    console.log(b);
-                    console.log(c);
+                console.log(data);
+                let content = arrayBufferToBuffer(data._body);
+                console.log(content);
+                this.fs.writeFile('/home/shyam/' + this.eLinkVersion + '.war', content, (err) => {
+                    if(err !== null) {
+                        console.log(err);
+                    }
                 });
             });
     }
