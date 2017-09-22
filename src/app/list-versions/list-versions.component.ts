@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { BobService } from '../service/bob.service'
+import { BobService } from '../service/bob.service';
+import { SystemUtils } from '../utils/utils';
 
 @Component({
     selector: 'list-versions',

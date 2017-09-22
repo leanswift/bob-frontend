@@ -1,4 +1,5 @@
 <div layout="container">
   <h2>Downloading &amp; installing eLink</h2>
-  <md-progress-bar mode="indeterminate"></md-progress-bar>
+  <md-progress-bar [mode]="determinate" [value]="progressCallback.progress" [bufferValue]="75"></md-progress-bar>
+  {{progressCallback.progress}}%
 </div>

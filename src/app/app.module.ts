@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { MdToolbarModule, MdListModule, MdButtonModule, MdProgressBarModule, MdFormFieldModule, MdInputModule } from '@angular/material';
 
+import { ProgressHttpModule } from 'angular-progress-http';
+
 import { BobService } from './service/bob.service';
 import { AppComponent } from './app.component';
 import { ListVersionsComponent } from './list-versions/list-versions.component';
@@ -39,7 +41,8 @@ const appRoutes: Routes = [
     MdButtonModule,
     MdFormFieldModule,
     MdInputModule,
-    MdProgressBarModule
+    MdProgressBarModule,
+    ProgressHttpModule
   ],
   providers: [],
   bootstrap: [
