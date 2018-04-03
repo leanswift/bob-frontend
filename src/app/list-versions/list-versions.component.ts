@@ -6,8 +6,7 @@ import { SystemUtils } from '../utils/utils';
 
 @Component({
     selector: 'list-versions',
-    templateUrl: 'list-versions.component.html',
-    providers: [BobService]
+    templateUrl: 'list-versions.component.html'
 })
 export class ListVersionsComponent implements OnInit {
 
@@ -19,7 +18,7 @@ export class ListVersionsComponent implements OnInit {
     public ngOnInit() {
         this.bobService
             .getELinkVersions()
-            .subscribe((data) => {                
+            .subscribe((data) => {
                 this.versionList = data.json().versions;
             },
             (error) => {

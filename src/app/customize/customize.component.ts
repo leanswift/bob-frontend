@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { BobService } from '../service/bob.service'
+import { BobService } from '../service/bob.service';
 
 @Component({
     selector: 'customize',
-    templateUrl: 'customize.component.html',
-    providers: [BobService]
+    templateUrl: 'customize.component.html'
 })
 export class CustomizeComponent implements OnInit {
 

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 
 import { MdToolbarModule, MdListModule, MdButtonModule, MdProgressBarModule, MdFormFieldModule, MdInputModule } from '@angular/material';
 
@@ -42,9 +43,10 @@ const appRoutes: Routes = [
     MdFormFieldModule,
     MdInputModule,
     MdProgressBarModule,
-    ProgressHttpModule
+    ProgressHttpModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [BobService],
   bootstrap: [
     AppComponent
   ]

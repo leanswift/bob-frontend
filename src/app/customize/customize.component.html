@@ -3,7 +3,7 @@
   <form>
     <div layout="row" flex *ngFor="let customizable of customizables">
     <md-form-field>
-        <input mdInput placeholder="{{customizable.name}}" />
+        <input name="value" mdInput placeholder="{{customizable.name}}" [(ngModel)]="customizable.value"/>
     </md-form-field>
     </div>
     <div layout="row" flex>

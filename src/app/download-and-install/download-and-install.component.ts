@@ -6,8 +6,7 @@ import { BobService, ProgressCallback } from '../service/bob.service';
 
 @Component({
     selector: 'download-and-install',
-    templateUrl: 'download-and-install.component.html',
-    providers: [BobService]
+    templateUrl: 'download-and-install.component.html'
 })
 export class DownloadAndInstallComponent implements OnInit {
 
