@@ -11,7 +11,7 @@ import { SystemUtils } from '../utils/utils';
 export class ListVersionsComponent implements OnInit {
 
     versionList = [];
-    selectedItem = null;
+    selectedItem = "blah";
 
     constructor(private bobService: BobService, private router: Router) {}
 

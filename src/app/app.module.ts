@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MdToolbarModule, MdListModule, MdButtonModule, MdProgressBarModule, MdFormFieldModule, MdInputModule } from '@angular/material';
+import { MatToolbarModule, MatListModule, MatButtonModule, MatCardModule, MatOptionModule,
+  MatSelectModule, MatProgressBarModule, MatFormFieldModule, MatInputModule } from '@angular/material';
 
 import { ProgressHttpModule } from 'angular-progress-http';
 
@@ -37,12 +38,15 @@ const appRoutes: Routes = [
       appRoutes,
       { enableTracing: true }
     ),
-    MdToolbarModule,
-    MdListModule,
-    MdButtonModule,
-    MdFormFieldModule,
-    MdInputModule,
-    MdProgressBarModule,
+    MatToolbarModule,
+    MatListModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatProgressBarModule,
     ProgressHttpModule,
     BrowserAnimationsModule
   ],

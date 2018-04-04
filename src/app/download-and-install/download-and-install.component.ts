@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import * as arrayBufferToBuffer from 'arraybuffer-to-buffer';
+// import * as arrayBufferToBuffer from 'arraybuffer-to-buffer';
 import { saveAs } from 'file-saver';
 
 import { BobService, ProgressCallback } from '../service/bob.service';
@@ -14,6 +14,7 @@ export class DownloadAndInstallComponent implements OnInit {
     // fs: any;
     eLinkVersion: string;
     progressCallback: ProgressCallback;
+    mode: string;
 
     constructor(private bobService: BobService, private router: Router, private route: ActivatedRoute) {}
 
@@ -22,6 +23,8 @@ export class DownloadAndInstallComponent implements OnInit {
         this.route.params.subscribe(params => {
             this.eLinkVersion = params['eLinkVersion'];
         });
+
+        this.mode = 'query';
 
         this.progressCallback = new ProgressCallbackImpl();
 
@@ -35,6 +38,7 @@ export class DownloadAndInstallComponent implements OnInit {
                 //         console.log(err);
                 //     }
                 // });
+                this.mode = 'determinate';
                 const blob = data.blob();
                 saveAs(blob, this.eLinkVersion + '.war');
             });
@@ -45,8 +49,10 @@ export class DownloadAndInstallComponent implements OnInit {
 export class ProgressCallbackImpl implements ProgressCallback {
 
     public progress = 0;
+    public mode = 'query';
 
     setProgress(progress) {
+        this.mode = 'determinate';
         this.progress = progress;
     }
 

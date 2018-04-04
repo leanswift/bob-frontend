@@ -1,5 +1,9 @@
-<div layout="container">
-  <h2>Downloading &amp; installing eLink</h2>
-  <md-progress-bar [mode]="determinate" [value]="progressCallback.progress" [bufferValue]="75"></md-progress-bar>
-  {{progressCallback.progress}}%
+<div class="md-padding" ng-cloak layout="column">
+  <mat-card>
+    <mat-card-title>Preparing and downloading eLink</mat-card-title>
+    <mat-card-content>
+      <mat-progress-bar [mode]="progressCallback.mode" [value]="progressCallback.progress" [bufferValue]="75"></mat-progress-bar>
+      {{progressCallback.progress}}%
+    </mat-card-content>
+  </mat-card>
 </div>

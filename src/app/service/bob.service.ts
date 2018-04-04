@@ -23,9 +23,9 @@ export class BobService {
 
     public downloadELink(eLinkVersion: string, progressCallback: ProgressCallback): Observable<any> {
         let data = {};
-        data['configurations'] = this.customizables; 
+        data['configurations'] = this.customizables;
         return this.progressHttp
-            .withDownloadProgressListener(progress => { 
+            .withDownloadProgressListener(progress => {
                 console.log(progress);
                 progressCallback.setProgress(progress.percentage);
             })

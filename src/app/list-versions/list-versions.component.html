@@ -1,6 +1,13 @@
-<div class="container">
-  <md-list flex>
-    <md-list-item *ngFor="let version of versionList" (click)="select(version)">{{version}}</md-list-item>
-  </md-list>
-  <a md-raised-button layout-fill (click)="customize()" flex="auto">Customize eLink</a>
+<div class="md-padding" ng-cloak layout="column">
+  <mat-card>
+    <mat-card-title>Choose eLink version</mat-card-title>
+    <mat-card-content>
+      <mat-form-field>
+        <mat-select placeholder="Select">
+          <mat-option *ngFor="let version of versionList" (click)="select(version)" [value]="version">{{version}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <a mat-button (click)="customize()">Customize eLink</a>
+    </mat-card-content>
+  </mat-card>
 </div>

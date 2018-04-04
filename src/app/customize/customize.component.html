@@ -1,14 +1,17 @@
-<div class="container" layout="row" flex>
-  <h2 class="mat-h2">Customize {{eLinkVersion}}</h2>
-  <form>
-    <div layout="row" flex *ngFor="let customizable of customizables">
-    <md-form-field>
-        <input name="value" mdInput placeholder="{{customizable.name}}" [(ngModel)]="customizable.value"/>
-    </md-form-field>
-    </div>
-    <div layout="row" flex>
-      <a md-raised-button layout-fill routerLink="/list-versions"><span flex>Back</span></a>
-      <a md-raised-button layout-fill (click)="downloadWar()">Download &amp; install</a>
-    </div>
-  </form>
+<div class="md-padding" ng-cloak layout="column">
+  <mat-card>
+    <mat-card-title>Customize {{eLinkVersion}}</mat-card-title>
+    <mat-card-content>
+      <form>
+        <div layout="row" flex *ngFor="let customizable of customizables">
+        <mat-form-field>
+            <input name="value" matInput placeholder="{{customizable.name}}" [(ngModel)]="customizable.value"/>
+        </mat-form-field>
+        </div>
+        <div layout="row" flex>
+          <a mat-button layout-fill (click)="downloadWar()">Download</a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
 </div>
