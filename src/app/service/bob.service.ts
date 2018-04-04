@@ -41,5 +41,8 @@ export class BobService {
 }
 
 export interface ProgressCallback {
+    mode: string;
+    progress: number;
+
     setProgress(progress: number): void;
 }
