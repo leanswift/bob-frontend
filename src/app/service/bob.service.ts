@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Http, RequestOptionsArgs, ResponseContentType } from '@angular/http';
 import { ProgressHttp } from 'angular-progress-http';
 import { Observable } from 'rxjs/Observable';
+import { BuildConfiguration } from '../create-config/build-configuration.interface';
 
 const baseUrl = 'http://172.30.1.109:8888';
 
@@ -36,6 +37,12 @@ export class BobService {
                     responseType: ResponseContentType.ArrayBuffer
                 }
             );
+    }
+
+    public createConfiguration(configuration: BuildConfiguration): Observable<any> {
+        return this.http.post(baseUrl + '/versions', {
+            data: configuration
+        });
     }
 
 }
