@@ -1,10 +1,11 @@
 import { Injectable, Inject } from '@angular/core';
-import { Http, RequestOptionsArgs, ResponseContentType } from '@angular/http';
+import { Http, RequestOptionsArgs, ResponseContentType, Headers } from '@angular/http';
 import { ProgressHttp } from 'angular-progress-http';
 import { Observable } from 'rxjs/Observable';
 import { BuildConfiguration } from '../create-config/build-configuration.interface';
+import { HttpHeaders } from '@angular/common/http';
 
-const baseUrl = 'http://172.30.1.109:8888';
+const baseUrl = 'http://localhost:8888';
 
 @Injectable()
 export class BobService {
@@ -40,8 +41,10 @@ export class BobService {
     }
 
     public createConfiguration(configuration: BuildConfiguration): Observable<any> {
-        return this.http.post(baseUrl + '/versions', {
-            data: configuration
+        return this.http.post(baseUrl + '/versions', configuration, {
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
         });
     }
 

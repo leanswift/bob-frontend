@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule, MatListModule, MatButtonModule, MatCardModule, MatOptionModule,
-  MatSelectModule, MatProgressBarModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+  MatSelectModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatIconModule } from '@angular/material';
 
 import { ProgressHttpModule } from 'angular-progress-http';
 
@@ -51,6 +51,7 @@ const appRoutes: Routes = [
     MatOptionModule,
     MatSelectModule,
     MatProgressBarModule,
+    MatIconModule,
     ProgressHttpModule,
     BrowserAnimationsModule
   ],

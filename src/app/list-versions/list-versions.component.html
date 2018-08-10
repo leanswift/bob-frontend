@@ -1,6 +1,11 @@
 <div class="md-padding" ng-cloak layout="column">
   <mat-card>
-    <mat-card-title>Choose eLink version</mat-card-title>
+    <mat-card-title>
+      Choose eLink version
+      <a mat-icon-button routerLink="/create-configuration">
+        <mat-icon aria-label="Add Configuration">add_circle</mat-icon>
+      </a>
+    </mat-card-title>
     <mat-card-content>
       <mat-form-field>
         <mat-select placeholder="Select">

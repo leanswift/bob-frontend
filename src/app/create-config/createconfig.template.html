@@ -1,19 +1,29 @@
-<div class="md-padding" ng-cloak layout="column">
+<div class="md-padding" ng-cloak layout="column" layout-margin>
     <mat-card>
         <mat-card-title>Create New Configuration</mat-card-title>
         <mat-card-content>
-            <form [formGroup]="configurationCreateForm" novalidate (ngSubmit)="createConfiguration(createConfigForm)">
+            <form [formGroup]="configurationCreateForm" novalidate (ngSubmit)="createConfiguration(configurationCreateForm)">
                 <mat-form-field>
                     <input name="version" matInput placeholder="Version" type="text" formControlName="version">
                 </mat-form-field>
-                <div formArrayName="modules">
-                    <h2>Modules</h2>
+                <mat-divider></mat-divider>
+                <div formArrayName="modules" layout="column">
+                    <h2 class="mat-h2">
+                        Modules
+                        <a mat-icon-button (click)="addModule()">
+                            <mat-icon aria-label="Add Module">add_circle</mat-icon>
+                        </a>
+                    </h2>
                     <div *ngFor="let module of configurationCreateForm.controls.modules.controls; let i=index">
                         <div>
-                            <h3>Module {{i + 1}}</h3>
-                            <span *ngIf="configurationCreateForm.controls.modules.controls.length > 1" (click)="removeModule(i)"></span>
+                            <h3 class="mat-h3">
+                                Module {{i + 1}}
+                                <a mat-icon-button *ngIf="configurationCreateForm.controls.modules.controls.length > 1" (click)="removeModule(i)">
+                                    <mat-icon aria label="Remove Module">remove_circle</mat-icon>
+                                </a>
+                            </h3>
                         </div>
-                        <div [formGroupName]="i">
+                        <div [formGroupName]="i" layout="row">
                             <mat-form-field>
                                 <input name="name" matInput placeholder="Name" type="text" formControlName="name">
                             </mat-form-field>
@@ -32,14 +42,24 @@
                         </div>
                     </div>
                 </div>
+                <mat-divider></mat-divider>
                 <div formArrayName="parameters">
-                    <h2>Parameters</h2>
+                    <h2 class="mat-h2">
+                        Parameters 
+                        <a mat-icon-button (click)="addParameter()">
+                            <mat-icon aria-label="Add Parameter">add_circle</mat-icon>
+                        </a>
+                    </h2>
                     <div *ngFor="let parameter of configurationCreateForm.controls.parameters.controls; let i=index">
                         <div>
-                            <h3>Parameter {{i + 1}}</h3>
-                            <a ng-button *ngIf="configurationCreateForm.controls.modules.controls.length > 1" (click)="removeModule(i)">-</a>
+                            <h3 class="mat-h3">
+                                Parameter {{i + 1}}
+                                <a mat-icon-button *ngIf="configurationCreateForm.controls.parameters.controls.length > 0" (click)="removeParameter(i)">
+                                    <mat-icon aria-label="Remove Parameter">remove_circle</mat-icon>
+                                </a>
+                            </h3>                            
                         </div>
-                        <div [formGroupName]="i">
+                        <div [formGroupName]="i" layout="column">
                             <div>
                                 <mat-form-field>
                                     <input name="name" matInput placeholder="Name" type="text" formControlName="name">
@@ -66,7 +86,9 @@
                         </div>
                     </div>
                 </div>
-                <button mat-button type="submit" [disabled]="!configurationCreateForm.valid">Submit</button>
+                <div>
+                    <button mat-button type="submit" [disabled]="!configurationCreateForm.valid">Submit</button>
+                </div>
             </form>
         </mat-card-content>
     </mat-card>
