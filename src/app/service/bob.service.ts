@@ -1,9 +1,8 @@
-import { Injectable, Inject } from '@angular/core';
-import { Http, RequestOptionsArgs, ResponseContentType, Headers } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http, ResponseContentType, Headers } from '@angular/http';
 import { ProgressHttp } from 'angular-progress-http';
 import { Observable } from 'rxjs/Observable';
 import { BuildConfiguration } from '../create-config/build-configuration.interface';
-import { HttpHeaders } from '@angular/common/http';
 
 const baseUrl = 'http://localhost:8888';
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { BobService } from '../service/bob.service';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
     selector: 'app-create-config',
@@ -11,7 +12,7 @@ export class CreateConfigComponent implements OnInit {
 
     public configurationCreateForm: FormGroup;
 
-    constructor(private bobService: BobService, private _fb: FormBuilder) {}
+    constructor(private bobService: BobService, private _fb: FormBuilder, private snackBar: MatSnackBar) {}
 
     ngOnInit(): void {
         this.configurationCreateForm  = this._fb.group({
@@ -81,9 +82,21 @@ export class CreateConfigComponent implements OnInit {
 
     createConfiguration(formGroup: FormGroup) {
         this.bobService.createConfiguration(formGroup.value)
-            .subscribe(result => {
-                console.log(result);
+            .subscribe({
+                next: result => {
+                    this.ngOnInit();
+                    this.openSnackBar('Configuration saved', 'Configure');
+                },
+                error: error => {
+                    this.openSnackBar('Configuration save failed because: \'' + JSON.parse(error._body).message + '\'', 'Dismiss');
+                }
             });
+    }
+
+    openSnackBar(message, action) {
+        this.snackBar.open(message, action, {
+            duration: 3000
+        });
     }
 
 }
