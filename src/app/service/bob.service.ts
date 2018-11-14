@@ -14,15 +14,15 @@ export class BobService {
 
     constructor(private http: Http, private progressHttp: ProgressHttp) {}
 
-    public getELinkVersions(): Observable<any> {
-        return this.http.get(baseUrl + '/versions');
+    public getVersions(project: string): Observable<any> {
+        return this.http.get(baseUrl + '/' + project + '/versions');
     }
 
-    public getCustomizables(eLinkVersion: string): Observable<any> {
-        return this.http.get(baseUrl + '/' + eLinkVersion + '/customizables');
+    public getCustomizables(project: string, version: string): Observable<any> {
+        return this.http.get(baseUrl + '/' + project + '/' + version + '/customizables');
     }
 
-    public downloadELink(eLinkVersion: string, progressCallback: ProgressCallback): Observable<any> {
+    public downloadProject(project: string, version: string, progressCallback: ProgressCallback): Observable<any> {
         let data = {};
         data['configurations'] = this.customizables;
         return this.progressHttp
@@ -31,7 +31,7 @@ export class BobService {
                 progressCallback.setProgress(progress.percentage);
             })
             .post(
-                baseUrl + '/' + eLinkVersion + '/download',
+                baseUrl + '/' + project + '/' + version + '/download',
                 data,
                 {
                     responseType: ResponseContentType.ArrayBuffer

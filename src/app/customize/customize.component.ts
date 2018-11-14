@@ -9,16 +9,21 @@ import { BobService } from '../service/bob.service';
 })
 export class CustomizeComponent implements OnInit {
 
-    eLinkVersion = null;
+    project = null;
+    version = null;
     customizables = [];
 
     constructor(private bobService: BobService, private router: Router, private route: ActivatedRoute) {}
 
     public ngOnInit() {
         this.route.params.subscribe(params => {
-            this.eLinkVersion = params['eLinkVersion'];
-            if(this.eLinkVersion == null) {
-                this.router.navigateByUrl('/list-versions');
+            this.project = params['project'];
+            this.version = params['version'];
+            if(this.project === null) {
+                this.router.navigateByUrl('/select-project');
+            }
+            if(this.version === null) {
+                this.router.navigateByUrl('/' + this.project + '/versions');
             }
             this.refreshCustomizables();
         });
@@ -26,7 +31,7 @@ export class CustomizeComponent implements OnInit {
 
     public refreshCustomizables() {
         this.bobService
-            .getCustomizables(this.eLinkVersion)
+            .getCustomizables(this.project, this.version)
             .subscribe(data => {
                 this.customizables = data.json().customizables;
             });
@@ -34,7 +39,7 @@ export class CustomizeComponent implements OnInit {
 
     public downloadWar() {
         this.bobService.customizables = this.customizables;
-        this.router.navigateByUrl('/download-and-install/' + this.eLinkVersion);
+        this.router.navigateByUrl('/' + this.project + '/download-and-install/' + this.version);
     }
 
 }

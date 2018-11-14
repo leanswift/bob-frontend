@@ -16,18 +16,21 @@ import { ListVersionsComponent } from './list-versions/list-versions.component';
 import { CustomizeComponent } from './customize/customize.component';
 import { DownloadAndInstallComponent } from './download-and-install/download-and-install.component';
 import { CreateConfigComponent } from './create-config/create-config.component';
+import { SelectProjectComponent } from './select-project/select-project.component';
 
 const appRoutes: Routes = [
-  { path: 'list-versions', component: ListVersionsComponent },
-  { path: 'customize/:eLinkVersion', component: CustomizeComponent },
-  { path: 'download-and-install/:eLinkVersion', component: DownloadAndInstallComponent },
+  { path: 'select-project', component: SelectProjectComponent },
+  { path: ':project/versions', component: ListVersionsComponent },
+  { path: ':project/customize/:version', component: CustomizeComponent },
+  { path: ':project/download-and-install/:version', component: DownloadAndInstallComponent },
   { path: 'create-configuration', component: CreateConfigComponent },
-  { path: '', redirectTo: '/list-versions', pathMatch: 'full' }
+  { path: '', redirectTo: '/select-project', pathMatch: 'full' }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    SelectProjectComponent,
     ListVersionsComponent,
     CustomizeComponent,
     CreateConfigComponent,

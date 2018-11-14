@@ -1,15 +1,15 @@
 <div class="md-padding" ng-cloak layout="column">
   <mat-card>
     <mat-card-title>
-      Choose {{project}} version
+      Choose Project
     </mat-card-title>
     <mat-card-content>
       <mat-form-field>
         <mat-select placeholder="Select">
-          <mat-option *ngFor="let version of versionList" (click)="select(version)" [value]="version">{{version}}</mat-option>
+          <mat-option *ngFor="let project of projectList" (click)="select(project)" [value]="project">{{project.name}}</mat-option>
         </mat-select>
       </mat-form-field>
-      <a mat-button (click)="customize()">Customize {{project}}</a>
+      <a mat-button (click)="projectSelected()">Select</a>
     </mat-card-content>
   </mat-card>
 </div>

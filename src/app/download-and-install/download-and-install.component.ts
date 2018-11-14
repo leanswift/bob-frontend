@@ -12,7 +12,8 @@ import { BobService, ProgressCallback } from '../service/bob.service';
 export class DownloadAndInstallComponent implements OnInit {
 
     // fs: any;
-    eLinkVersion: string;
+    project: any;
+    version: string;
     progressCallback: ProgressCallback;
     mode: string;
 
@@ -21,26 +22,21 @@ export class DownloadAndInstallComponent implements OnInit {
     public ngOnInit() {
         // this.fs = window['fs'];
         this.route.params.subscribe(params => {
-            this.eLinkVersion = params['eLinkVersion'];
+            this.project = params['project'];
+            this.version = params['version'];
         });
 
         this.mode = 'query';
 
         this.progressCallback = new ProgressCallbackImpl();
 
-        this.bobService.downloadELink(this.eLinkVersion, this.progressCallback)
+        this.bobService.downloadProject(this.project, this.version, this.progressCallback)
             .subscribe(data => {
                 console.log(data);
-                // let content = arrayBufferToBuffer(data._body);
-                // console.log(content);
-                // this.fs.writeFile(this.eLinkVersion + '.war', content, (err) => {
-                //     if(err !== null) {
-                //         console.log(err);
-                //     }
-                // });
+                const extension = this.project === 'elink' ? '.war' : '.zip';
                 this.mode = 'determinate';
                 const blob = data.blob();
-                saveAs(blob, this.eLinkVersion + '.war');
+                saveAs(blob, this.version + extension);
             });
     }
 

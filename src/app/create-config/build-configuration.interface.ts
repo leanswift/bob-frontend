@@ -1,12 +1,12 @@
 export interface BuildConfiguration {
 
     version: string;
-    modules: ELinkModule[];
-    parameters: ELinkCustomizable[];
+    modules: ProjectModule[];
+    parameters: ProjectCustomizable[];
 
 }
 
-export interface ELinkModule {
+export interface ProjectModule {
 
     name: string;
     repository: string;
@@ -16,7 +16,7 @@ export interface ELinkModule {
 
 }
 
-export interface ELinkCustomizable {
+export interface ProjectCustomizable {
 
     name: string;
     type: string;
