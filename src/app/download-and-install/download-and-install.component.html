@@ -1,9 +1,13 @@
 <div class="md-padding" ng-cloak layout="column">
   <mat-card>
     <mat-card-title>Preparing and downloading project</mat-card-title>
-    <mat-card-content>
+    <mat-card-content *ngIf="!hasError">
       <mat-progress-bar [mode]="progressCallback.mode" [value]="progressCallback.progress" [bufferValue]="75"></mat-progress-bar>
       {{progressCallback.progress}}%
+    </mat-card-content>
+    <mat-card-content *ngIf="hasError">
+      Failed to download: <br />
+      ErrorMessage: {{errorMessage}}
     </mat-card-content>
   </mat-card>
 </div>

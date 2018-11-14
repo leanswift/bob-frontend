@@ -16,6 +16,8 @@ export class DownloadAndInstallComponent implements OnInit {
     version: string;
     progressCallback: ProgressCallback;
     mode: string;
+    hasError: boolean;
+    errorMessage: string;
 
     constructor(private bobService: BobService, private router: Router, private route: ActivatedRoute) {}
 
@@ -37,6 +39,11 @@ export class DownloadAndInstallComponent implements OnInit {
                 this.mode = 'determinate';
                 const blob = data.blob();
                 saveAs(blob, this.version + extension);
+            },
+            error => {
+                const textDecoder = new TextDecoder('utf-8');
+                this.hasError = true;
+                this.errorMessage = textDecoder.decode(error._body);
             });
     }
 
