@@ -16,7 +16,7 @@ export class SelectProjectComponent implements OnInit {
     constructor(private bobService: BobService, private router: Router) {}
 
     public ngOnInit() {
-        this.projectList = [ { name: 'eLink', key: 'elink' }, { name: 'H5 Webapps', key: 'h5' } ];
+        this.projectList = [ { name: 'eLink', key: 'eLink' }, { name: 'H5 Webapps', key: 'h5' } ];
     }
 
     public select(project: any) {

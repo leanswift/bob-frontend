@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-// import * as arrayBufferToBuffer from 'arraybuffer-to-buffer';
+import { TextDecoder } from 'text-encoding';
 import { saveAs } from 'file-saver';
 
 import { BobService, ProgressCallback } from '../service/bob.service';
