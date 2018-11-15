@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { BobService } from '../service/bob.service';
 import { FormGroup, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-create-config',
@@ -10,9 +11,14 @@ import { MatSnackBar } from '@angular/material';
 })
 export class CreateConfigComponent implements OnInit {
 
+    project = null;
+
+    isMultiModule: boolean;
+
     public configurationCreateForm: FormGroup;
 
-    constructor(private bobService: BobService, private _fb: FormBuilder, private snackBar: MatSnackBar) {}
+    constructor(private bobService: BobService, private _fb: FormBuilder, private snackBar: MatSnackBar,
+        private router: Router, private route: ActivatedRoute) {}
 
     ngOnInit(): void {
         this.configurationCreateForm  = this._fb.group({
@@ -22,7 +28,16 @@ export class CreateConfigComponent implements OnInit {
             ]),
             parameters: this._fb.array([])
         });
-        this.initDefaultParameters();
+        this.route.params.subscribe(params => {
+            this.project = params['project'];
+            if(this.project === null) {
+                this.router.navigateByUrl('/select-project');
+            }
+            if(this.project === 'eLink') {
+                this.isMultiModule = true;
+                this.initELinkDefaultParameters();
+            }
+        });
     }
 
     private initModule() {
@@ -35,7 +50,7 @@ export class CreateConfigComponent implements OnInit {
         });
     }
 
-    private initDefaultParameters() {
+    private initELinkDefaultParameters() {
         const control = <FormArray> this.configurationCreateForm.controls['parameters'];
         control.push(this.initParameter('Log file location', 'logLocation', 'regex', null,
             '\\${catalina\\.base}/logs/leanswift/eLink-\\d\\.\\d\\.\\d', 'logback.xml', 'eLink-resources/src/main/resources'));
@@ -81,7 +96,7 @@ export class CreateConfigComponent implements OnInit {
     }
 
     createConfiguration(formGroup: FormGroup) {
-        this.bobService.createConfiguration(formGroup.value)
+        this.bobService.createConfiguration(this.project, formGroup.value)
             .subscribe({
                 next: result => {
                     this.ngOnInit();

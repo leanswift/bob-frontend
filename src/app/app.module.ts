@@ -23,7 +23,7 @@ const appRoutes: Routes = [
   { path: ':project/versions', component: ListVersionsComponent },
   { path: ':project/customize/:version', component: CustomizeComponent },
   { path: ':project/download-and-install/:version', component: DownloadAndInstallComponent },
-  { path: 'create-configuration', component: CreateConfigComponent },
+  { path: ':project/create-configuration', component: CreateConfigComponent },
   { path: '', redirectTo: '/select-project', pathMatch: 'full' }
 ];
 

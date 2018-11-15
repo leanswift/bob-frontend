@@ -39,8 +39,8 @@ export class BobService {
             );
     }
 
-    public createConfiguration(configuration: BuildConfiguration): Observable<any> {
-        return this.http.post(baseUrl + '/versions', configuration, {
+    public createConfiguration(project: string, configuration: BuildConfiguration): Observable<any> {
+        return this.http.post(baseUrl + '/' + project + '/versions', configuration, {
             headers: new Headers({
                 'Content-Type': 'application/json'
             })

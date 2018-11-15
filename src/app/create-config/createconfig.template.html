@@ -10,7 +10,7 @@
                 <div formArrayName="modules" layout="column">
                     <h2 class="mat-h2">
                         Modules
-                        <a mat-icon-button (click)="addModule()">
+                        <a *ngIf="isMultiModule" mat-icon-button (click)="addModule()">
                             <mat-icon aria-label="Add Module">add_circle</mat-icon>
                         </a>
                     </h2>

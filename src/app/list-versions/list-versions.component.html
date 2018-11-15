@@ -2,6 +2,9 @@
   <mat-card>
     <mat-card-title>
       Choose {{project}} version
+      <a mat-icon-button routerLink="/{{project}}/create-configuration">
+        <mat-icon aria-label="Add Configuration">add_circle</mat-icon>
+      </a>
     </mat-card-title>
     <mat-card-content>
       <mat-form-field>
