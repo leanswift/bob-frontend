@@ -40,11 +40,34 @@ export class BobService {
     }
 
     public createConfiguration(project: string, configuration: BuildConfiguration): Observable<any> {
+        this.verifyConfiguration(configuration);
         return this.http.post(baseUrl + '/' + project + '/versions', configuration, {
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
         });
+    }
+
+    private verifyConfiguration(configuration) {
+        const modules = configuration.modules;
+        modules.forEach(module => {
+            if(this.isNullOrEmpty(module.branch) && this.isNullOrEmpty(module.tag)) {
+                throw Error('Both branch and tag cannot be empty');
+            } else if(!this.isNullOrEmpty(module.branch) && !this.isNullOrEmpty(module.tag)) {
+                throw Error('Only one of either branch or tag should be configured at once');
+            } else {
+                if(this.isNullOrEmpty(module.branch)) {
+                    delete module.branch;
+                }
+                if(this.isNullOrEmpty(module.tag)) {
+                    delete module.tag;
+                }
+            }
+        });
+    }
+
+    private isNullOrEmpty(something): boolean {
+        return typeof(something) === 'undefined' || something === null || something === '';
     }
 
 }
