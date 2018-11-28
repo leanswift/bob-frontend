@@ -1,18 +1,22 @@
-<div class="md-padding" ng-cloak layout="column">
-  <mat-card>
-    <mat-card-title>
-      Choose {{project}} version
-      <a mat-icon-button routerLink="/{{project}}/create-configuration">
-        <mat-icon aria-label="Add Configuration">add_circle</mat-icon>
-      </a>
-    </mat-card-title>
-    <mat-card-content>
-      <mat-form-field>
-        <mat-select placeholder="Select">
-          <mat-option *ngFor="let version of versionList" (click)="select(version)" [value]="version">{{version}}</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <a mat-button (click)="customize()">Customize {{project}}</a>
-    </mat-card-content>
-  </mat-card>
+<div class="md-padding" ng-cloak>
+  <mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+      <ng-container matColumnDef="version">
+          <mat-header-cell *matHeaderCellDef>Version</mat-header-cell>
+          <mat-cell *matCellDef="let version">{{version}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+          <mat-cell *matCellDef="let version" (click)="$event.stopPropagation()">
+              <button mat-icon-button (click)="editConfig(version)">
+                    <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button (click)="deleteConfig(version)">
+                    <mat-icon>delete</mat-icon>
+              </button>
+          </mat-cell>
+      </ng-container>
+       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+       <mat-row *matRowDef="let row; columns: displayedColumns"
+                         (click)="customize(row)"></mat-row>
+  </mat-table>
 </div>

@@ -22,6 +22,14 @@ export class BobService {
         return this.http.get(baseUrl + '/' + project + '/' + version + '/customizables');
     }
 
+    public getModuleForVersion(project: string, version: string): Observable<any> {
+        return this.http.get(baseUrl + '/' + project + '/' + version + '/moduleforversion');
+    }
+
+    public removeConfig(project: string, version: string): Observable<any> {
+      return this.http.get(baseUrl + '/' + project + '/' + version + '/removeversion');
+    }
+
     public downloadProject(project: string, version: string, progressCallback: ProgressCallback): Observable<any> {
         let data = {};
         data['configurations'] = this.customizables;
@@ -40,6 +48,15 @@ export class BobService {
     }
 
     public createConfiguration(project: string, configuration: BuildConfiguration): Observable<any> {
+        this.verifyConfiguration(configuration);
+        return this.http.post(baseUrl + '/' + project + '/versions', configuration, {
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        });
+    }
+
+    public updateConfiguration(project: string, configuration: BuildConfiguration): Observable<any> {
         this.verifyConfiguration(configuration);
         return this.http.post(baseUrl + '/' + project + '/versions', configuration, {
             headers: new Headers({

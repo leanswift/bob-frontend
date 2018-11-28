@@ -6,7 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule, MatListModule, MatButtonModule, MatCardModule, MatOptionModule,
-  MatSelectModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSnackBarModule } from '@angular/material';
+  MatSelectModule, MatProgressBarModule, MatFormFieldModule, MatInputModule, MatIconModule, MatSnackBarModule,
+  MatTableModule, MatSortModule, MatPaginatorModule, MatDialogModule } from '@angular/material';
 
 import { ProgressHttpModule } from 'angular-progress-http';
 
@@ -17,6 +18,8 @@ import { CustomizeComponent } from './customize/customize.component';
 import { DownloadAndInstallComponent } from './download-and-install/download-and-install.component';
 import { CreateConfigComponent } from './create-config/create-config.component';
 import { SelectProjectComponent } from './select-project/select-project.component';
+import { EditOrDelConfigComponent } from './edit-del-config/edit-del-config.component';
+import { AlertComponent } from './alerts/alert.component';
 
 const appRoutes: Routes = [
   { path: 'select-project', component: SelectProjectComponent },
@@ -24,6 +27,7 @@ const appRoutes: Routes = [
   { path: ':project/customize/:version', component: CustomizeComponent },
   { path: ':project/download-and-install/:version', component: DownloadAndInstallComponent },
   { path: ':project/create-configuration', component: CreateConfigComponent },
+  { path: ':project/edit-configuration/:version', component: EditOrDelConfigComponent },
   { path: '', redirectTo: '/select-project', pathMatch: 'full' }
 ];
 
@@ -34,7 +38,9 @@ const appRoutes: Routes = [
     ListVersionsComponent,
     CustomizeComponent,
     CreateConfigComponent,
-    DownloadAndInstallComponent
+    DownloadAndInstallComponent,
+    EditOrDelConfigComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
@@ -57,11 +63,18 @@ const appRoutes: Routes = [
     MatIconModule,
     MatSnackBarModule,
     ProgressHttpModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatDialogModule
   ],
   providers: [BobService],
   bootstrap: [
     AppComponent
+  ],
+  entryComponents: [
+    AlertComponent
   ]
 })
 export class AppModule { }
