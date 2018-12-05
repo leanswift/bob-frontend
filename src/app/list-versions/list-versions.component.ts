@@ -56,6 +56,7 @@ export class ListVersionsComponent implements OnInit {
     }
 
     public deleteConfig(version: any) {
+        let encodedVersion = encodeURIComponent(version);
         const dialogConfig = new MatDialogConfig();
         dialogConfig.disableClose = true;
         dialogConfig.autoFocus = true;
@@ -68,12 +69,16 @@ export class ListVersionsComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(result => {
             if (result) {
-              this.bobService.removeConfig(this.project, version);
-              this.getVersions();
+              this.bobService.removeConfig(this.project, encodedVersion)
+                              .subscribe((data) => {
+                                  this.getVersions();
+                              },
+                              (error) => {
+                                this.versionList = [];
+                              });
             }
         });
     }
-
 }
 
 export interface VersionData {
