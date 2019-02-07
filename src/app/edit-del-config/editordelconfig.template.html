@@ -1,22 +1,91 @@
 <div class="md-padding" ng-cloak layout="column" layout-margin>
     <mat-card>
-        <mat-card-title>Edit Configuration for {{version}}</mat-card-title>
+        <mat-card-title>Edit {{version}}</mat-card-title>
         <mat-card-content>
-                <div layout="row" flex *ngFor="let module of modules">
-                    <mat-form-field>
-                        <input name="name" matInput placeholder="Name" type="text" [(ngModel)]="module.name">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input name="version" matInput placeholder="Version" type="text" [(ngModel)]="module.version">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input name="repository" matInput placeholder="Repository" type="text" [(ngModel)]="module.repository">
-                    </mat-form-field>
-                    <mat-form-field>
-                        <input name="tag" matInput placeholder="Tag" type="text" [(ngModel)]="module.tag">
-                    </mat-form-field>
+            <form [formGroup]="configurationEditForm" novalidate (ngSubmit)="editConfiguration(configurationEditForm)">
+                <div formArrayName="modules" layout="column">
+                    <h2 class="mat-h2">
+                        Modules
+                        <a *ngIf="isMultiModule" mat-icon-button (click)="addModule()">
+                            <mat-icon aria-label="Add Module">add_circle</mat-icon>
+                        </a>
+                    </h2>
+                    <div *ngFor="let module of configurationEditForm.controls.modules.controls; let i=index">
+                        <div>
+                            <h3 class="mat-h3">
+                                Module {{i + 1}}
+                                <a mat-icon-button *ngIf="configurationEditForm.controls.modules.controls.length > 1" (click)="removeModule(i)">
+                                    <mat-icon aria label="Remove Module">remove_circle</mat-icon>
+                                </a>
+                            </h3>
+                        </div>
+                        <div [formGroupName]="i" layout="row">
+                            <mat-form-field>
+                                <input name="name" matInput placeholder="Name" type="text" formControlName="name">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input name="version" matInput placeholder="Version" type="text" formControlName="version">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input name="repository" matInput placeholder="Repository" type="text" formControlName="repository">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input name="branch" matInput placeholder="Branch" type="text" formControlName="branch">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <input name="tag" matInput placeholder="Tag" type="text" formControlName="tag">
+                            </mat-form-field>
+                        </div>
+                    </div>
                 </div>
-            <mat-divider></mat-divider>
+                <mat-divider></mat-divider>
+                <div formArrayName="parameters">
+                    <h2 class="mat-h2">
+                        Parameters 
+                        <a mat-icon-button (click)="addParameter()">
+                            <mat-icon aria-label="Add Parameter">add_circle</mat-icon>
+                        </a>
+                    </h2>
+                    <div *ngFor="let parameter of configurationEditForm.controls.parameters.controls; let i=index">
+                        <div>
+                            <h3 class="mat-h3">
+                                Parameter {{i + 1}}
+                                <a mat-icon-button *ngIf="configurationEditForm.controls.parameters.controls.length > 0" (click)="removeParameter(i)">
+                                    <mat-icon aria-label="Remove Parameter">remove_circle</mat-icon>
+                                </a>
+                            </h3>                            
+                        </div>
+                        <div [formGroupName]="i" layout="column">
+                            <div>
+                                <mat-form-field>
+                                    <input name="name" matInput placeholder="Name" type="text" formControlName="name">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input name="requestKey" matInput placeholder="Request key" type="text" formControlName="requestKey">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input name="type" matInput placeholder="Type" type="text" formControlName="type">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input name="key" matInput placeholder="Key" type="text" formControlName="key">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input name="expression" matInput placeholder="Expression" type="text" formControlName="expression">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input name="fileName" matInput placeholder="File name" type="text" formControlName="fileName">
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <input name="location" matInput placeholder="Location" type="text" formControlName="location">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button mat-button type="submit" [disabled]="!configurationEditForm.valid">Submit</button>
+                </div>
+            </form>
         </mat-card-content>
     </mat-card>
 </div>

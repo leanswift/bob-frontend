@@ -1,7 +1,12 @@
 <div class="md-padding" ng-cloak>
   <mat-table class="mat-elevation-z8" [dataSource]="dataSource">
       <ng-container matColumnDef="version">
-          <mat-header-cell *matHeaderCellDef>Version</mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>
+              Version
+              <a mat-icon-button routerLink="/{{project}}/create-configuration">
+                <mat-icon aria-label="Add Configuration">add_circle</mat-icon>
+              </a>
+          </mat-header-cell>
           <mat-cell *matCellDef="let version">{{version}}</mat-cell>
       </ng-container>
       <ng-container matColumnDef="actions">
