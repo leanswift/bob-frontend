@@ -3,9 +3,9 @@
     <mat-card-title>Customize {{version}}</mat-card-title>
     <mat-card-content>
       <form>
-        <div layout="row" flex *ngFor="let customizable of customizables">
+        <div layout="row" flex *ngFor="let customizable of customizables; let i = index;">
         <mat-form-field>
-            <input name="value" matInput placeholder="{{customizable.name}}" [(ngModel)]="customizable.value"/>
+            <input name="value" matInput placeholder="{{customizable.name}}" [(ngModel)]="customizable.defaultValue" [ngModelOptions]="{standalone: true}"/>
         </mat-form-field>
         </div>
         <div layout="row" flex>
